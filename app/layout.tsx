@@ -7,6 +7,7 @@ import { theme } from "@/lib/theme"
 import type React from "react"
 import { Manrope } from "next/font/google"
 import { AuthProvider } from "@/lib/auth-context"
+import { Analytics } from '@vercel/analytics/next';
 
 const manrope = Manrope({ subsets: ["latin"] })
 
@@ -21,7 +22,10 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              {children}
+              <Analytics />
+            </AuthProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
